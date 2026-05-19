@@ -1,70 +1,106 @@
-# Getting Started with Create React App
+# Chatbot
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+A full-stack AI chat application with user authentication, persistent conversations, and markdown/code rendering in assistant replies.
+
+## Features
+
+- User registration and login
+- JWT-based authentication
+- Create, switch, and delete chat conversations
+- Send messages to the AI assistant
+- Render markdown and code blocks in assistant responses
+- Copy code blocks with a one-click button
+- Responsive chat layout with a collapsible sidebar on mobile
+
+## Tech Stack
+
+- Frontend: React, React Router, Axios, React Markdown, React Syntax Highlighter
+- Backend: Node.js, Express, MongoDB, Mongoose
+- AI: OpenAI / Groq SDK support in the server
+
+## Project Structure
+
+- `client/` - React frontend
+- `server/` - Express backend and API routes
+
+## Prerequisites
+
+- Node.js 18+ recommended
+- MongoDB connection string
+- API key or model credentials required by the server
+
+## Setup
+
+### 1. Install dependencies
+
+Run this in both folders:
+
+```bash
+npm install
+```
+
+### 2. Configure the server
+
+Create a `.env` file inside `server/` with the values required by your backend, for example:
+
+```env
+PORT=5000
+MONGO_URI=your_mongodb_connection_string
+JWT_SECRET=your_jwt_secret
+OPENAI_API_KEY=your_openai_key
+GROQ_API_KEY=your_groq_key
+```
+
+Only include the keys your server actually uses.
+
+### 3. Start the backend
+
+```bash
+cd server
+npm start
+```
+
+If your server file is run directly with Node, this should expose the API on the port from `.env`.
+
+### 4. Start the frontend
+
+```bash
+cd client
+npm start
+```
+
+The app will open at `http://localhost:3000`.
+
+## API Endpoints
+
+The frontend currently talks to these backend routes:
+
+- `POST /api/auth/register`
+- `POST /api/auth/login`
+- `GET /api/chat`
+- `POST /api/chat/new`
+- `POST /api/chat/:id/message`
+- `DELETE /api/chat/:id`
+
+## Notes
+
+- The frontend stores the JWT token and user profile in `localStorage`.
+- Assistant messages support markdown and fenced code blocks.
+- Copy buttons appear automatically above rendered code blocks.
 
 ## Available Scripts
 
-In the project directory, you can run:
+Inside `client/`:
 
-### `npm start`
+- `npm start` - run the app in development mode
+- `npm test` - launch the test runner
+- `npm run build` - create a production build
+- `npm run eject` - eject from Create React App
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+Inside `server/`, the current package only defines a placeholder `test` script. Add start/dev scripts there if you want a one-command backend workflow.
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Future Improvements
 
-### `npm test`
-
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
-
-### `npm run build`
-
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
-
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
-
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
-
-### `npm run eject`
-
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
-
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
-
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
-
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
-
-### Code Splitting
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
-
-### Analyzing the Bundle Size
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
-
-### Making a Progressive Web App
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
-
-### Advanced Configuration
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
-
-### Deployment
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
-
-### `npm run build` fails to minify
-
-This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+- Add a top-level README at the repo root for easier onboarding
+- Add backend start scripts and a shared root script for running both apps
+- Document the expected response format for chat messages
