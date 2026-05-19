@@ -5,6 +5,7 @@ import { useNavigate, Link } from 'react-router-dom';
 function Register() {
 
     const navigate = useNavigate();
+    const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:5000';
 
     const [formData, setFormData] = useState({
         username: '',
@@ -31,7 +32,7 @@ function Register() {
         try {
 
             await axios.post(
-                'http://localhost:5000/api/auth/register',
+                `${apiUrl}/api/auth/register`,
                 formData
             );
 

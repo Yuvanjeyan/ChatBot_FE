@@ -17,6 +17,7 @@ function ChatPage() {
     const [sidebarOpen, setSidebarOpen] = useState(false);
 
     const token = localStorage.getItem('token');
+    const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:5000';
 
     // Fetch all chats
     const fetchChats = useCallback(async () => {
@@ -24,7 +25,7 @@ function ChatPage() {
         try {
 
             const response = await axios.get(
-                'http://localhost:5000/api/chat',
+                `${apiUrl}/api/chat`,
                 {
                     headers: {
                         authorization: token,
@@ -68,7 +69,7 @@ function ChatPage() {
         try {
 
             const response = await axios.post(
-                'http://localhost:5000/api/chat/new',
+                `${apiUrl}/api/chat/new`,
                 {},
                 {
                     headers: {
@@ -102,7 +103,7 @@ function ChatPage() {
         try {
 
             const response = await axios.post(
-                `http://localhost:5000/api/chat/${selectedChat._id}/message`,
+                `${apiUrl}/api/chat/${selectedChat._id}/message`,
                 {
                     message,
                 },
@@ -136,7 +137,7 @@ function ChatPage() {
 
         try {
             await axios.delete(
-                `http://localhost:5000/api/chat/${chatId}`,
+                `${apiUrl}/api/chat/${chatId}`,
                 {
                     headers: {
                         authorization: token,

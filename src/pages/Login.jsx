@@ -5,6 +5,7 @@ import { useNavigate, Link } from 'react-router-dom';
 function Login() {
 
     const navigate = useNavigate();
+    const apiUrl = process.env.REACT_APP_API_URL || 'http://localhost:5000';
 
     const [formData, setFormData] = useState({
         email: '',
@@ -30,7 +31,7 @@ function Login() {
         try {
 
             const response = await axios.post(
-                'http://localhost:5000/api/auth/login',
+                `${apiUrl}/api/auth/login`,
                 formData
             );
 
