@@ -50,7 +50,7 @@ function ChatPage() {
 
             console.log(error);
         }
-    }, [token, selectedChat]);
+    }, [token, selectedChat, apiUrl]);
 
     useEffect(() => {
 
